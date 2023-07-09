@@ -92,6 +92,8 @@
     <string name="pref_encryption_summary">Verschlüssele die Datenbank und entsperre sie mit einem Passwort oder biometrischen Daten</string>
     <string name="pref_biometrics_title">Biometrisches Entsperren</string>
     <string name="pref_biometrics_summary">Erlaube die biometrische Authentisierung zum Entsperren der Datenbank</string>
+    <string name="pref_auto_biometrics_title">Automatisch biometrisch entsperren</string>
+    <string name="pref_auto_biometrics_summary">Starte die biometrische entsperrung automatisch</string>
     <string name="pref_set_password_title">Passwort ändern</string>
     <string name="pref_set_password_summary">Lege ein neues Passwort fest, das erforderlich ist, um die Datenbank zu entsperren</string>
     <string name="export_encrypted">Datenbank verschlüsseln</string>

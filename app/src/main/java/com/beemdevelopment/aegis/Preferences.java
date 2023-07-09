@@ -405,6 +405,10 @@ public class Preferences {
         return isBuiltInBackup ? "pref_backups_result_builtin": "pref_backups_result_android";
     }
 
+    public boolean isAutoBiometrics() {
+        return _prefs.getBoolean("pref_auto_biometrics", false);
+    }
+
     public void setIsBackupReminderNeeded(boolean needed) {
         if (isBackupsReminderNeeded() != needed) {
             _prefs.edit().putBoolean("pref_backups_reminder_needed", needed).apply();

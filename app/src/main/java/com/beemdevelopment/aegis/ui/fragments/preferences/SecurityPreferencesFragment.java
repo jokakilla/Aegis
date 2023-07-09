@@ -39,6 +39,7 @@ import javax.crypto.Cipher;
 public class SecurityPreferencesFragment extends PreferencesFragment {
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _biometricsPreference;
+    private SwitchPreference _autoBiometricsPreference;
     private Preference _autoLockPreference;
     private Preference _setPasswordPreference;
     private Preference _passwordReminderPreference;
@@ -114,10 +115,17 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
+        _autoBiometricsPreference = requirePreference("pref_auto_biometrics");
+
         _biometricsPreference = requirePreference("pref_biometrics");
         _biometricsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             SlotList slots = creds.getSlots();
+
+            //Auto biometrics doesn't make sense when biometrics are off
+            if (!(boolean) newValue) {
+                _autoBiometricsPreference.setChecked(false);
+            }
 
             if (!slots.has(BiometricSlot.class)) {
                 if (BiometricsHelper.isAvailable(requireContext())) {
@@ -267,6 +275,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
+        _autoBiometricsPreference.setVisible(encrypted);
         _autoLockPreference.setVisible(encrypted);
         _pinKeyboardPreference.setVisible(encrypted);
         _backupPasswordPreference.getParent().setVisible(encrypted);
@@ -288,6 +297,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             _setPasswordPreference.setEnabled(false);
             _biometricsPreference.setEnabled(false);
             _biometricsPreference.setChecked(false, true);
+            _autoBiometricsPreference.setChecked(false);
             _passwordReminderPreference.setVisible(false);
             _backupPasswordChangePreference.setEnabled(false);
         }

@@ -193,7 +193,7 @@ public class AuthActivity extends AegisActivity {
             focusPasswordField();
         }
 
-        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt && !remindPassword) {
+        if (_bioKey != null && _bioPrompt == null && _prefs.isAutoBiometrics() && !_inhibitBioPrompt && !remindPassword) {
             _bioPrompt = showBiometricPrompt();
         }
 

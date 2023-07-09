@@ -26,6 +26,12 @@
             android:persistent="false"
             app:iconSpaceReserved="false"/>
 
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
+            android:key="pref_auto_biometrics"
+            android:title="@string/pref_auto_biometrics_title"
+            android:summary="@string/pref_auto_biometrics_summary"
+            app:iconSpaceReserved="false"/>
+
         <Preference
             android:key="pref_password_reminder_freq"
             android:title="@string/pref_password_reminder_title"
